@@ -1,4 +1,4 @@
-package xyz.mizhoux.logrobot;
+package xyz.mizhoux.logrobot.dingtalk;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.AppenderSkeleton;
@@ -45,6 +45,7 @@ public class DingTalkAppender extends AppenderSkeleton {
         }
 
         TextMessage message = new TextMessage(content.toString());
+        // 可添加你想要 at 的人: message.addAtMobile(xxx)
         DingTalkTool.send(message);
     }
 

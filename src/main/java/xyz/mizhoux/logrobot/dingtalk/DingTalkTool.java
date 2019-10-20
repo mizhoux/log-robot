@@ -1,4 +1,4 @@
-package xyz.mizhoux.logrobot;
+package xyz.mizhoux.logrobot.dingtalk;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -22,7 +22,10 @@ public class DingTalkTool {
 
     private static final int CODE_OK = 200;
 
-    private static final String WEBHOOK = "https://oapi.dingtalk.com/robot/send?access_token=f82edaa1f6977f25dff50ad357549b988507155b3b9824897b0cd1a4b9e92d50";
+    /**
+     * 修改为你的 webhook
+     */
+    private static final String WEBHOOK = "https://oapi.dingtalk.com/robot/send?access_token=your_access_token";
 
     /**
      * 异步发送消息
