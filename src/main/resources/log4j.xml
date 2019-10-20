@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://toolkit.alibaba-inc.com/dtd/log4j/log4j.dtd">
+
+<log4j:configuration>
+
+    <!-- DEBUG 及以上级别的日志 输出到控制台 -->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="threshold" value="DEBUG"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d %p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- INFO 及以上级别的日志 按天输出到 logs/project.log -->
+    <appender name="PROJECT_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="threshold" value="INFO"/>
+        <param name="file" value="logs/project.log"/>
+        <param name="encoding" value="UTF-8"/>
+        <param name="append" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d %p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ERROR 及以上级别的日志 按天输出到 logs/error.log -->
+    <appender name="ERROR_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="threshold" value="ERROR"/>
+        <param name="file" value="logs/error.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%n%d %p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ERROR 及以上级别的日志 输出到钉钉 -->
+    <appender name="ERROR_DINGTALK" class="xyz.mizhoux.logrobot.DingTalkAppender">
+        <param name="threshold" value="ERROR"/>
+    </appender>
+
+    <!-- 根 Logger -->
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PROJECT_FILE"/>
+        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="ERROR_DINGTALK"/>
+    </root>
+
+</log4j:configuration>
