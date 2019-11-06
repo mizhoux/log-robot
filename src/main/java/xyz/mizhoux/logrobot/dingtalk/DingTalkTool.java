@@ -20,7 +20,15 @@ public class DingTalkTool {
 
     private static final Logger logger = LoggerFactory.getLogger(DingTalkTool.class);
 
+    /**
+     * OK 响应码
+     */
     private static final int CODE_OK = 200;
+
+    /**
+     * OkHttpClient 可复用
+     */
+    private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
     /**
      * 修改为你的 webhook
@@ -54,10 +62,7 @@ public class DingTalkTool {
                 .build();
 
         // 通过 HTTP 客户端发送请求
-        OkHttpClient httpClient = new OkHttpClient();
-
-        Call call = httpClient.newCall(request);
-        call.enqueue(new Callback() {
+        HTTP_CLIENT.newCall(request).enqueue(new Callback() {
 
             @Override
             public void onFailure(Call c, IOException e) {
@@ -65,14 +70,14 @@ public class DingTalkTool {
             }
 
             @Override
-            public void onResponse(Call c, Response response) throws IOException {
-                int code = response.code();
+            public void onResponse(Call c, Response r) throws IOException {
+                int code = r.code();
                 if (code != CODE_OK) {
                     logger.error("发送消息失败，code={}", code);
                     return;
                 }
 
-                ResponseBody responseBody = response.body();
+                ResponseBody responseBody = r.body();
                 if (responseBody != null) {
                     JSONObject body = JSON.parseObject(responseBody.string());
 
