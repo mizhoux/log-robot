@@ -34,9 +34,9 @@
         </layout>
     </appender>
 
-    <!-- ERROR 及以上级别的日志 输出到钉钉 -->
+    <!-- WARN 及以上级别的日志 输出到钉钉 -->
     <appender name="ERROR_DINGTALK" class="xyz.mizhoux.logrobot.dingtalk.DingTalkAppender">
-        <param name="threshold" value="ERROR"/>
+        <param name="threshold" value="WARN"/>
     </appender>
 
     <!-- 根 Logger -->

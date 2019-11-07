@@ -21,7 +21,7 @@ public class DingTalkTool {
     private static final Logger logger = LoggerFactory.getLogger(DingTalkTool.class);
 
     /**
-     * OK 响应码
+     * 正常响应码
      */
     private static final int CODE_OK = 200;
 

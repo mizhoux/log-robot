@@ -2,6 +2,8 @@ package xyz.mizhoux.logrobot.message;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.Objects;
+
 /**
  * 文本消息
  *
@@ -15,9 +17,10 @@ public class TextMessage extends BaseMessage {
      */
     private final String content;
 
-    public TextMessage(String content) {
+    public TextMessage(CharSequence content) {
         super();
-        this.content = content;
+        Objects.requireNonNull(content, "The text to send can't be null");
+        this.content = content.toString();
     }
 
     @Override
